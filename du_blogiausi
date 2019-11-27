@@ -1,0 +1,65 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+struct studentai{
+    char vardai[15];
+    char pavarde[15];
+    float vidurkis;
+
+};
+int main(){
+
+    studentai Sar[100];
+    ifstream in("duom.txt");
+    ofstream out("rez.txt");
+
+    int kiek;
+    in>>kiek;
+    cout<<kiek;
+
+    for(int i=0; i<kiek; i++){
+
+        in>>Sar[i].vardai>>Sar[i].pavarde>>Sar[i].vidurkis;
+    }
+    out<<"Musu mokinukai "<<endl;
+
+    for(int i=0; i<kiek; i++){
+
+        out<<Sar[i].vardai<<"  "<<Sar[i].pavarde<<"  "<<Sar[i].vidurkis<<endl;
+    }
+
+    float blogoVid;
+
+    blogoVid = Sar[0].vidurkis;
+
+    for(int i=1; i<kiek; i++){
+
+            if(blogoVid>Sar[i].vidurkis)
+
+            {blogoVid = Sar[i].vidurkis;}
+
+    }
+    out<<blogoVid;
+    int BlogoNr[kiek];
+    int kiekBlogu(0);
+
+    for(int i=0; i<kiek; i++){
+
+        if(blogoVid==Sar[i].vidurkis){
+            BlogoNr[kiekBlogu]=i;
+            kiekBlogu++;
+        }
+    }
+    out<<"Blogiausi "<<endl;
+
+     for(int i=0; i<kiekBlogu; i++){
+
+        out<<Sar[BlogoNr[i]].vardai<<"  "<<Sar[BlogoNr[i]].pavarde<<"  "<<Sar[BlogoNr[i]].vidurkis<<endl;
+    }
+
+    in.close();
+    out.close();
+    return 0;
+}
